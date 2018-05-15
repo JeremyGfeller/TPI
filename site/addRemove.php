@@ -27,16 +27,19 @@ header("Access-Control-Allow-Origin: *");
 extract($_GET);
 
 /* Search in the base the data for an article */
-$query = "select id_users, first_name, last_name, login, password, role from users where id_users = $id;";
+$query = "select id_vintage, id_wine, name, provider, year, qr_code, quantity, price, date 
+            from vintage 
+            inner join wine on fk_wine = id_wine
+            where id_vintage = $id;";
             
-$quantitys = $dbh->query($query) or die ("SQL Error in:<br> $query <br>Error message:".$dbh->errorInfo()[2]);
+$wines = $dbh->query($query) or die ("SQL Error in:<br> $query <br>Error message:".$dbh->errorInfo()[2]);
 
 /* Save the data in a array */
-while($quantity = $quantitys->fetch()) //fetch = aller chercher
+while($wine = $wines->fetch()) //fetch = aller chercher
 {
-    extract($quantity); // $id_users, $first_name, $last_name, $login, $role
+    extract($wine); // $id_vintage, $id_wine, $name, $provider, $year, $qr_code, $quantity, $price, $date
     
-    $arr = array('id_users' => $id_users, 'first_name' => $first_name, 'last_name' => $last_name, 'login' => $login, 'role' => $role);
+    $arr = array('id_wine' => $id_wine, 'name'=> $name, 'year' => $year, 'quantity' => $quantity);
 
     echo json_encode($arr);
 }
