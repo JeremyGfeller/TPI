@@ -29,7 +29,7 @@
     $newQuantity = $_POST['newQuantity'];
     $id_wine = $_POST['id_wine'];
 
-    $query = "UPDATE vintage SET quantity = quantity + $newQuantity WHERE id_vintage = $id_wine;";
+    $query = "UPDATE vintage SET quantity = 200 WHERE id_vintage = 1;";
     $dbh->query($query) or die ("SQL Error in:<br> $query <br>Error message:".$dbh->errorInfo()[2]);
     
 
