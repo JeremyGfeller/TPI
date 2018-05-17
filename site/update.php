@@ -34,9 +34,6 @@
     }
 
     $query = "UPDATE vintage SET quantity = $newQuantity WHERE id_vintage = $id_wine;";
-
-    echo json_encode($query);
-    
     $dbh->query($query) or die ("SQL Error in:<br> $query <br>Error message:".$dbh->errorInfo()[2]);
     
 ?>
