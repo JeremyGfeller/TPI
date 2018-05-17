@@ -71,7 +71,10 @@ CREATE TABLE IF NOT EXISTS movement (
   id_movement INT(11) NOT NULL AUTO_INCREMENT,
   fk_users INT(11) NOT NULL,
   fk_vintage INT(11) NOT NULL,
+  movement_in INT(11) NULL DEFAULT NULL,
+  movement_out INT(11) NULL DEFAULT NULL,
   provider_other VARCHAR(45) NULL DEFAULT NULL,
+  date DATE NULL DEFAULT NULL,
   PRIMARY KEY (id_movement, fk_users, fk_vintage),
   INDEX fk_users_has_vintage_vintage1_idx (fk_vintage ASC),
   INDEX fk_users_has_vintage_users_idx (fk_users ASC),
@@ -94,6 +97,7 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 INSERT INTO users (first_name, last_name, login, password, role) VALUES ('jeremy', 'gfeller', 'jeremy', '123', '1');
+INSERT INTO users (login, password, role) VALUES ('louis', '123', '1');
 
 INSERT INTO typewine (typeWine) VALUES ('Blanc');
 INSERT INTO typewine (typeWine) VALUES ('Rouge');
@@ -103,6 +107,6 @@ INSERT INTO typewine (typeWine) VALUES ('Liquoreu');
 
 INSERT INTO wine (fk_typeWine, name, provider) VALUES ('1', 'Merlot', 'Denner');
 
-INSERT INTO vintage (id_vintage, fk_wine, year, qr_code, quantity, price, date) VALUES ('', '1', '2013', '1', '5', '20', '15.05.2018');
+INSERT INTO vintage (fk_wine, year, qr_code, quantity, price, date) VALUES ('1', '2013', '1', '5', '20', '15.05.2018');
 
 
