@@ -6,10 +6,6 @@
     
     //die(json_encode(print_r($_POST,1)));
     //error_log(print_r($_POST,1));
-
-    $newQuantity = $_POST['quantity'];
-    $id_wine = $_POST['wineid'];
-
     //error_log(print_r($_POST,1));
 
     // Toutes les infos nécessaires pour la connexion à une base de donnée
