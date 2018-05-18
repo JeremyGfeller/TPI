@@ -14,7 +14,7 @@
         $hostname = 'localhost';
         $dbname = 'caveWine';
         $username = 'root';
-        $password = 'root';
+        $password = '';
 
         // PDO = Persistant Data Object
         // Entre "" = Connection String
