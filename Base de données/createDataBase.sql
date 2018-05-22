@@ -107,6 +107,6 @@ INSERT INTO typewine (typeWine) VALUES ('Liquoreu');
 
 INSERT INTO wine (fk_typeWine, name, provider) VALUES ('1', 'Merlot', 'Denner');
 
-INSERT INTO vintage (fk_wine, year, qr_code, quantity, price, date) VALUES ('1', '2013', '1', '5', '20', '15.05.2018');
+INSERT INTO vintage (fk_wine, year, qr_code, quantity, price) VALUES ('1', '2013', '1', '5', '20');
 
 
