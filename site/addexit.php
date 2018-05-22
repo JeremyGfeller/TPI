@@ -5,7 +5,7 @@
 
     if(isset($_POST['in']))
     {
-        $id_wine = $_POST['id_wine'];
+        $id_wine = $_POST['listYear'];
         $quantity = $_POST['quantity'];
         
         $query = "INSERT INTO movement (fk_users, fk_vintage, movement_in) VALUES ('1', '$id_wine', '$quantity');";
