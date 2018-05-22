@@ -11,7 +11,7 @@
         $query = "INSERT INTO movement (fk_users, fk_vintage, movement_in) VALUES ('1', '$id_wine', '$quantity');";
         $dbh->query($query) or die ("SQL Error in:<br> $query <br>Error message:".$dbh->errorInfo()[2]);
 
-        $query = "UPDATE vintage SET quantity = quantity + $quantity WHERE id_vintage = $id_wine;";
+        $query = "UPDATE vintage SET quantity = quantity + $quantity, date = now() WHERE id_vintage = $id_wine;";
         $dbh->query($query) or die ("SQL Error in:<br> $query <br>Error message:".$dbh->errorInfo()[2]);
     }
 
@@ -23,7 +23,7 @@
         $query = "INSERT INTO movement (fk_users, fk_vintage, movement_out) VALUES ('1', '$id_wine', '$quantity');";
         $dbh->query($query) or die ("SQL Error in:<br> $query <br>Error message:".$dbh->errorInfo()[2]);
     
-        $query = "UPDATE vintage SET quantity = quantity - $quantity WHERE id_vintage = $id_wine;";
+        $query = "UPDATE vintage SET quantity = quantity - $quantity, date = now() WHERE id_vintage = $id_wine;";
         $dbh->query($query) or die ("SQL Error in:<br> $query <br>Error message:".$dbh->errorInfo()[2]);
     }
 ?>
