@@ -2,7 +2,7 @@
     require_once('fonction.php');
     connectDB();
     extract($_POST);
-    echo "POST :";  print_r($_POST); echo "<br><br>";   
+    //echo "POST :";  print_r($_POST); echo "<br><br>";   
 
     if(isset($_POST['add']))
     {
