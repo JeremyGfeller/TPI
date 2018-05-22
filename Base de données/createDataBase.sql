@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS movement (
   movement_in INT(11) NULL DEFAULT NULL,
   movement_out INT(11) NULL DEFAULT NULL,
   provider_other VARCHAR(45) NULL DEFAULT NULL,
-  date DATE NULL DEFAULT NULL,
+  date DATETIME NULL DEFAULT now(),  
   PRIMARY KEY (id_movement, fk_users, fk_vintage),
   INDEX fk_users_has_vintage_vintage1_idx (fk_vintage ASC),
   INDEX fk_users_has_vintage_users_idx (fk_users ASC),
