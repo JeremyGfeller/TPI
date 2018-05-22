@@ -59,9 +59,8 @@
     echo "
     <form method='post'>
         <div>
-            <span style='border:1px solid black;padding: 5px;'>Nom du vin</span><br><br>
-        
-            <SELECT name='id_wine' size='1' style='padding-right: 60px' onchange='yearWine(this.value)'>
+            <span style='border:1px solid black;padding: 5px;'>Nom du vin</span><br>
+            <SELECT name='id_wine' size='1' style='padding-right: 60px; margin: 10px;' onchange='yearWine(this.value)'>
                 <option value='' selected>Selectionnez un vin</option>";
                 $query = "SELECT id_wine, name FROM wine;";
                 $wines = $dbh->query($query) or die ("SQL Error in:<br> $query <br>Error message:".$dbh->errorInfo()[2]);
@@ -76,16 +75,16 @@
             </SELECT>
         </div>
         <div>
-            <span style='border:1px solid black;padding: 5px;'>Année</span><br><br>
-            <div id='year'></div>
+            <span style='border:1px solid black;padding: 5px;'>Année</span><br>
+            <div id='year' style='margin: 10px;'></div>
         </div>
         <div>
-            <span style='border:1px solid black;padding: 5px;'>Nombre de bouteilles</span><br><br>
-            <input type='text' name='quantity' required/>
+            <span style='border:1px solid black;padding: 5px;'>Nombre de bouteilles</span><br>
+            <input type='text' name='quantity' required style='margin: 10px;'/>
         </div>
         <div>
-            <span style='border:1px solid black;padding: 5px;'>Date</span><br><br>
-            <div id='date'>"; echo date('d-m-Y'); echo "</div>
+            <span style='border:1px solid black; padding: 5px;'>Date</span><br>
+            <div id='date' style='margin: 10px;'>"; echo date('d-m-Y'); echo "</div>
         </div>
         <div>
             <button name='in'>Entrée</button>
