@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS vintage (
   qr_code INT(11) NULL DEFAULT NULL,
   quantity INT(11) NULL DEFAULT NULL,
   price INT(11) NULL DEFAULT NULL,
-  date DATE NULL DEFAULT NULL,
+  date DATETIME NULL DEFAULT now(),  
   PRIMARY KEY (id_vintage, fk_wine),
   INDEX fk_vintage_wine1_idx (fk_wine ASC),
   CONSTRAINT fk_vintage_wine1
