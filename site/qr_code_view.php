@@ -1,20 +1,13 @@
-<script>
-    function print()
-    {
-        //Get the print button and put it into a variable
-        var printParagraph = document.getElementById("tohide");
-        var printButton = document.getElementById("tohide2");
-        //Set the print button visibility to 'hidden' 
-        printParagraph.style.visibility = 'hidden';
-        printButton.style.visibility = 'hidden';
-        //Print the page content
-        window.print();
-        //Set the print button to 'visible' again 
-        //[Delete this line if you want it to stay hidden after printing]
-        printParagraph.style.visibility = 'visible';
-        printButton.style.visibility = 'visible';
+<style>
+@media print {
+    #tohide {
+        display :  none;
     }
-</script>
+    #tohide2 {
+        display :  none;
+    }
+}
+</style>
 <?php
     require_once('fonction.php');
     connectDB();
