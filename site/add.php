@@ -22,13 +22,13 @@
         $query = "UPDATE vintage SET qr_code = (SELECT id_vintage order by id_vintage DESC limit 1);";
         $dbh->query($query) or die ("SQL Error in:<br> $query <br>Error message:".$dbh->errorInfo()[2]);
 
-        $query = "SELECT id_vintage, qr_code from vintage order by id_vintage DESC limit 1;";
+        $query = "SELECT id_vintage, qr_code, name, year from vintage inner join wine on fk_wine = id_wine order by id_vintage DESC limit 1;";
         $lastVintages = $dbh->query($query) or die ("SQL Error in:<br> $query <br>Error message:".$dbh->errorInfo()[2]);
         $lastVintage = $lastVintages->fetch(); //fetch = aller chercher
         if($lastVintages->rowCount() > 0)
         {
-            extract($lastVintage); // $id_vintage, $qr_code
-            QRcode::png($qr_code, 'qr_code/'.$qr_code.'.png'); // creates file
+            extract($lastVintage); // $id_vintage, $qr_code, $name, $year
+            QRcode::png($qr_code, 'qr_code/'.$qr_code.'-'.$name.'-'.$year.'.png'); // creates file
         }
     }
 ?>
