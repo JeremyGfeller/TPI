@@ -7,9 +7,14 @@
     while($lastVintage = $lastVintages->fetch()) //fetch = aller chercher
     {
         extract($lastVintage); // $id_vintage, $qr_code, $name, $year
-        echo "<table style='float: left;'>
-                <img src='qr_code/$qr_code-$name-$year.png'>
-                <p>$qr_code-$name-$year.png</p>
+        echo "<table style='float: left; border: 1px solid black; margin: 30px;'>
+                <tr>
+                    <td>
+                        <img src='qr_code/$qr_code-$name-$year.png'>
+                        <p>$qr_code-$name-$year.png</p>
+                        <button onclick='window.print()'>Imprimer</button>
+                    </td>
+                </tr>
               </table>";
     }
 ?>
