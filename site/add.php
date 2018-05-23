@@ -28,7 +28,7 @@
         if($lastVintages->rowCount() > 0)
         {
             extract($lastVintage); // $id_vintage, $qr_code, $name, $year
-            QRcode::png($qr_code, 'qr_code/'.$qr_code.'-'.$name.'-'.$year.'.png'); // creates file
+            QRcode::png($qr_code, 'qr_code/'.$qr_code.'-'.$name.'-'.$year.'.png', QR_ECLEVEL_L, 20); // creates file
         }
     }
 ?>
