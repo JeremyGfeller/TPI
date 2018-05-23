@@ -1,6 +1,6 @@
 <?php
     require_once('fonction.php');
-    include('qr_code/phpqrcode/qrlib.php');
+    include('phpqrcode/qrlib.php');
     connectDB();
     extract($_POST);
     //echo "POST :";  print_r($_POST); echo "<br><br>";   
@@ -22,7 +22,14 @@
         $query = "UPDATE vintage SET qr_code = (SELECT id_vintage order by id_vintage DESC limit 1);";
         $dbh->query($query) or die ("SQL Error in:<br> $query <br>Error message:".$dbh->errorInfo()[2]);
         
-        QRcode::png('code data text', 'qr_code/filename.png'); // creates file
+        $query = "SELECT id_vintage, qr_code from vintage order by id_vintage DESC limit 1";
+        $lastVintage = $dbh->query($query) or die ("SQL Error in:<br> $query <br>Error message:".$dbh->errorInfo()[2]);
+        if($lastVintage->rowCount() > 0)
+        {
+            extract($lastVintage); // $id_vintage, $qr_code
+            echo "QR_CODE $qr_code";    
+            QRcode::png($qr_code, "$qr_code.png"); // creates file
+        }
     }
 ?>
 <?php 
