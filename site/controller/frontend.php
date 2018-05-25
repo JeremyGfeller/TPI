@@ -15,20 +15,23 @@ function addWine($wineName, $year, $provider, $typeWine, $price, $quantity)
         insertWine($typeWine, $wineName, $provider);
     }
 
-    insertVintage($wineName, $year, $price, $quantity);
+    $selectVintage = selectVintage($wineName, $year);
+
+    // Check si le millésime est déjà éxistant ou pas
+    if($selectVintage == NULL)
+    {
+        extract($selectVintage); //$id_wine, $name
+        insertVintage($wineName, $year, $price, $quantity);
+    }
 
     $updateQRCode = updateQRCode();
 
     if($updateQRCode != NULL)
     {
         extract($updateQRCode); // $id_vintage, $qr_code, $name, $year
-
-        echo "id_vintage $id_vintage<br>";
-        echo "qr_code $qr_code<br>";
-        echo "name $name<br>";
-        echo "year $year<br>";
         QRcode::png($qr_code, 'qr_code/'.$qr_code.'-'.$name.'-'.$year.'.png', QR_ECLEVEL_L, 20); // creates file
     }
+    showAdd();
 }
 
 function showAdd()
