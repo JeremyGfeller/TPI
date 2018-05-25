@@ -49,7 +49,7 @@ function showAdd()
     require('view/frontend/addView.php');
 }
 
-function showPrint()
+function showQR()
 {
     $selectQRCodes = selectQRCode();
 
@@ -60,4 +60,17 @@ function showPrint()
     }
     
     require('view/frontend/qr_codeView.php');
+}
+
+function showPrint($qr_code)
+{
+    $printQRs = printQR($qr_code);
+
+    $ArrayPrintQRCodes = array();
+    foreach($printQRs as $printQR) //Je lis dans le resultat de la requête pour chaque entrée reçue
+    {
+        array_push($ArrayPrintQRCodes, array('id_vintage' => $printQR['id_vintage'] , 'qr_code' => $printQR['qr_code'], 'name' => $printQR['name'], 'year' => $printQR['year']));
+    }
+    
+    require('view/frontend/qr_codePrintView.php');
 }

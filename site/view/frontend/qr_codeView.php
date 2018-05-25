@@ -12,7 +12,7 @@ foreach($ArrayQRCodes as $ArrayQRCode)
             <td>
                 <img src='qr_code/".$ArrayQRCode['qr_code']."-".$ArrayQRCode['name']."-".$ArrayQRCode['year'].".png' width='150px' height='150px'>
                 <p>".$ArrayQRCode['qr_code']."-".$ArrayQRCode['name']."-".$ArrayQRCode['year']."</p>
-                <a href='qr_code_view.php?qr_code=".$ArrayQRCode['qr_code']."'><button>Imprimer</button></a>   
+                <a href='index.php?qr_code=".$ArrayQRCode['qr_code']."'><button>Imprimer</button></a>   
             </td>
         </tr>
     </table>

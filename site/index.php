@@ -12,7 +12,7 @@ try
             addWine($wineName, $year, $provider, $typeWine, $price, $quantity);
         }
     }
-    elseif(isset($_GET['qr_code']))
+    elseif(isset($qr_code))
     {
         showPrint($qr_code);
     }
@@ -22,7 +22,7 @@ try
     }
     elseif(isset($qr))
     {
-        showPrint();
+        showQR();
     }
     else
     {

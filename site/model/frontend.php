@@ -77,3 +77,11 @@ function selectQRCode()
  
     return $req; 
 }
+
+function printQR($qr_code)
+{
+    $dbh = connectDB();
+    $req = $dbh->query("SELECT id_vintage, qr_code, name, year from vintage inner join wine on fk_wine = id_wine where qr_code = $qr_code order by id_vintage;");
+ 
+    return $req;
+}

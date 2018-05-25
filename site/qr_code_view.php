@@ -19,6 +19,7 @@
 
     $query = "SELECT id_vintage, qr_code, name, year from vintage inner join wine on fk_wine = id_wine where qr_code = $qr_code order by id_vintage;";
     $lastVintages = $dbh->query($query) or die ("SQL Error in:<br> $query <br>Error message:".$dbh->errorInfo()[2]);
+    
     while($lastVintage = $lastVintages->fetch()) //fetch = aller chercher
     {
         extract($lastVintage); // $id_vintage, $qr_code, $name, $year
