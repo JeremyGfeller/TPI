@@ -31,5 +31,5 @@ try
 }
 catch(Exception $e)
 {
-    echo 'Erreur: ' . $e->getMessae();
+    echo 'Erreur: ' . $e->getMessage();
 }
