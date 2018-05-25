@@ -1,6 +1,7 @@
 <?php
 require_once('controller/frontend.php');
 extract($_POST);
+extract($_GET);
 
 try
 {
@@ -11,9 +12,21 @@ try
             addWine($wineName, $year, $provider, $typeWine, $price, $quantity);
         }
     }
-    else
+    elseif(isset($_GET['qr_code']))
+    {
+        showPrint($qr_code);
+    }
+    elseif(isset($addwine))
     {
         showAdd();
+    }
+    elseif(isset($qr))
+    {
+        showPrint();
+    }
+    else
+    {
+        require('view/frontend/home.php');
     }
 }
 catch(Exception $e)

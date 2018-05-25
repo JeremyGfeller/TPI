@@ -69,3 +69,11 @@ function selectTypeWine()
  
     return $req; 
 }
+
+function selectQRCode()
+{
+    $dbh = connectDB();
+    $req = $dbh->query("SELECT id_vintage, qr_code, name, year from vintage inner join wine on fk_wine = id_wine order by id_vintage;");
+ 
+    return $req; 
+}
