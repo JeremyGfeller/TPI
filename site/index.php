@@ -7,7 +7,7 @@ try
 {
     if(isset($add))
     {
-        if(isset($_POST['wineName']) && isset($_POST['year']) && isset($_POST['provider']) && isset($_POST['typeWine']) && isset($_POST['price']) && isset($_POST['quantity']))
+        if(isset($wineName) && isset($year) && isset($provider) && isset($typeWine) && isset($price) && isset($quantity))
         {
             addWine($wineName, $year, $provider, $typeWine, $price, $quantity);
         }

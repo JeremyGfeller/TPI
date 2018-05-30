@@ -6,12 +6,11 @@ echo "POST: "; print_r($_POST); echo "<br><br>";
 
 function addWine($wineName, $year, $provider, $typeWine, $price, $quantity)
 {
-    $newWine = newWine($wineName);
+    $selectWine = newWine($wineName);
 
     // Check si le vin est déjà éxistant ou pas
-    if($newWine == NULL)
+    if($selectWine == NULL)
     {
-        extract($newWine); //$id_wine, $name
         insertWine($typeWine, $wineName, $provider);
     }
 
@@ -20,7 +19,6 @@ function addWine($wineName, $year, $provider, $typeWine, $price, $quantity)
     // Check si le millésime est déjà éxistant ou pas
     if($selectVintage == NULL)
     {
-        extract($selectVintage); //$id_wine, $name
         insertVintage($wineName, $year, $price, $quantity);
     }
 
@@ -54,7 +52,7 @@ function showStock()
     $ArrayWines = array();
     foreach($quantityNoDates as $quantityNoDate) //Je lis dans le resultat de la requête pour chaque entrée reçue
     {
-        array_push($ArrayWines, array('name' => $quantityNoDate['name'] , 'typeWine' => $quantityNoDate['typeWine'], 'year' => $quantityNoDate['year'], 'quantity' => $quantityNoDate['quantity'], 'date' => $quantityNoDate['date']));
+        array_push($ArrayWines, array('name' => $quantityNoDate['name'] , 'typeWine' => $quantityNoDate['typeWine'], 'year' => $quantityNoDate['year'], 'quantity' => $quantityNoDate['quantity']));
     }
 
     require('view/frontend/stockView.php');

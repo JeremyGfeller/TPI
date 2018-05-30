@@ -5,7 +5,7 @@ function connectDB()
     $hostname = 'localhost';
     $dbname = 'caveWine';
     $username = 'root';
-    $password = 'root';
+    $password = '';
  
     // PDO = Persistant Data Object
     // Between "" = Connection String
@@ -41,7 +41,7 @@ function selectVintage($wineName, $year)
     $req = $dbh->query("SELECT id_vintage, (SELECT id_wine from wine WHERE name = '$wineName') as fk_wine, year, quantity, price from vintage WHERE year = '$year';");
     $reqArray = $req->fetch();
  
-    return $reqArray;  
+    return $reqArray;
 }
 
 function insertVintage($wineName, $year, $price, $quantity)
@@ -106,7 +106,7 @@ function wineIn($listYear, $quantity)
 function wineOut($listYear, $quantity)
 {
     $dbh = connectDB();
-    $dbh->query("INSERT INTO movement (fk_users, fk_vintage, movement_out) VALUES ('1', '$id_wine', '$quantity');");
+    $dbh->query("INSERT INTO movement (fk_users, fk_vintage, movement_out) VALUES ('1', '$listYear', '$quantity');");
     $dbh->query("UPDATE vintage SET quantity = quantity - $quantity, date = now() WHERE id_vintage = $listYear;");
 
     return;
