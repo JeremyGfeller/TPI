@@ -2,7 +2,7 @@
 require('model/frontend.php');
 require('phpqrcode/qrlib.php');
 
-//echo "POST: "; print_r($_POST); echo "<br><br>";
+echo "POST: "; print_r($_POST); echo "<br><br>";
 
 function addWine($wineName, $year, $provider, $typeWine, $price, $quantity)
 {
@@ -36,8 +36,6 @@ function addWine($wineName, $year, $provider, $typeWine, $price, $quantity)
 
 function showAdd()
 {
-    
-    //############################ Gère les types de vin ###################################
     $selectTypeWines = selectTypeWine();
     
     $ArrayTypeWines = array();
@@ -47,6 +45,57 @@ function showAdd()
     }
     
     require('view/frontend/addView.php');
+}
+
+function showStock()
+{
+    $quantityNoDates = quantityNoDate();
+     
+    $ArrayWines = array();
+    foreach($quantityNoDates as $quantityNoDate) //Je lis dans le resultat de la requête pour chaque entrée reçue
+    {
+        array_push($ArrayWines, array('name' => $quantityNoDate['name'] , 'typeWine' => $quantityNoDate['typeWine'], 'year' => $quantityNoDate['year'], 'quantity' => $quantityNoDate['quantity'], 'date' => $quantityNoDate['date']));
+    }
+
+    require('view/frontend/stockView.php');
+}
+
+function showStockWithDate($date)
+{
+    $quantityWithDates = quantityWithDate($date);
+     
+    $ArrayWines = array();
+    foreach($quantityWithDates as $quantityWithDate) //Je lis dans le resultat de la requête pour chaque entrée reçue
+    {
+        array_push($ArrayWines, array('name' => $quantityWithDate['name'] , 'typeWine' => $quantityWithDate['typeWine'], 'year' => $quantityWithDate['year'], 'quantity' => $quantityWithDate['quantity'], 'date' => $quantityWithDate['date']));
+    }
+
+    require('view/frontend/stockView.php');
+}
+
+function in($listYear, $quantity)
+{
+    wineIn($listYear, $quantity);
+    showAddexit();
+}
+
+function out($listYear, $quantity)
+{
+    wineOut($listYear, $quantity);
+    showAddexit();
+}
+
+function showAddexit()
+{
+    $selectWines = selectWine();
+
+    $ArrayWines = array();
+    foreach($selectWines as $selectWine) //Je lis dans le resultat de la requête pour chaque entrée reçue
+    {
+        array_push($ArrayWines, array('id_wine' => $selectWine['id_wine'], 'name' => $selectWine['name']));
+    }
+
+    require('view/frontend/addexitView.php');
 }
 
 function showQR()

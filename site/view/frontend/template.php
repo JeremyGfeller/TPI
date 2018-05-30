@@ -8,6 +8,7 @@
 
     <body>
         <?= $content ?>
+        <a href='index.php'>index</a>
     </body>
 </html>
 

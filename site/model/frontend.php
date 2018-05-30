@@ -5,7 +5,7 @@ function connectDB()
     $hostname = 'localhost';
     $dbname = 'caveWine';
     $username = 'root';
-    $password = '';
+    $password = 'root';
  
     // PDO = Persistant Data Object
     // Between "" = Connection String
@@ -84,4 +84,49 @@ function printQR($qr_code)
     $req = $dbh->query("SELECT id_vintage, qr_code, name, year from vintage inner join wine on fk_wine = id_wine where qr_code = $qr_code order by id_vintage;");
  
     return $req;
+}
+
+function selectWine()
+{
+    $dbh = connectDB();
+    $req = $dbh->query("SELECT id_wine, name FROM wine;");
+ 
+    return $req; 
+}
+
+function wineIn($listYear, $quantity)
+{
+    $dbh = connectDB();
+    $dbh->query("INSERT INTO movement (fk_users, fk_vintage, movement_in) VALUES ('1', '$listYear', '$quantity');");
+    $dbh->query("UPDATE vintage SET quantity = quantity + $quantity, date = now() WHERE id_vintage = $listYear;");
+
+    return;
+}
+
+function wineOut($listYear, $quantity)
+{
+    $dbh = connectDB();
+    $dbh->query("INSERT INTO movement (fk_users, fk_vintage, movement_out) VALUES ('1', '$id_wine', '$quantity');");
+    $dbh->query("UPDATE vintage SET quantity = quantity - $quantity, date = now() WHERE id_vintage = $listYear;");
+
+    return;
+}
+
+function quantityNoDate()
+{
+    $dbh = connectDB();
+    $req = $dbh->query("SELECT name, typeWine, year, quantity FROM wine INNER JOIN vintage on id_wine = fk_wine INNER JOIN typeWine on fk_typeWine = id_typeWine;");
+ 
+    return $req; 
+}
+
+function quantityWithDate($date)
+{
+    $dbh = connectDB();
+    $req = $dbh->query("SELECT name, typeWine, year, quantity, date FROM wine
+    INNER JOIN vintage on id_wine = fk_wine
+    INNER JOIN typeWine on fk_typeWine = id_typeWine
+    WHERE date LIKE '$date%';");
+ 
+    return $req; 
 }

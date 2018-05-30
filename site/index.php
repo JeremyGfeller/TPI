@@ -5,12 +5,32 @@ extract($_GET);
 
 try
 {
-    if(isset($_POST['add']))
+    if(isset($add))
     {
         if(isset($_POST['wineName']) && isset($_POST['year']) && isset($_POST['provider']) && isset($_POST['typeWine']) && isset($_POST['price']) && isset($_POST['quantity']))
         {
             addWine($wineName, $year, $provider, $typeWine, $price, $quantity);
         }
+    }
+    elseif(isset($stocks))
+    {
+        showStock();
+    }
+    elseif(isset($search))
+    {
+        showStockWithDate($date);
+    }
+    elseif(isset($addexit))
+    {
+        showAddexit();
+    }
+    elseif(isset($in))
+    {
+        in($listYear, $quantity);
+    }
+    elseif(isset($out))
+    {
+        out($listYear, $quantity);
     }
     elseif(isset($qr_code))
     {

@@ -16,10 +16,11 @@
             <select name='typeWine' style='margin: 10px'>
                 
                 <?php //Le tableau est déjà connu par le programe car tu l'as crée dans le controller. Comme tu appelle cette page, tu gardes toute les variables déjà connues
-                foreach($ArrayTypeWines as $ArrayTypeWine) //Je lis dans le tableau cette fois-ci
-                {
-                    echo "<option value=".$ArrayTypeWine['id_typeWine'].">".$ArrayTypeWine['typeWine']."</option>"; // echo "<option value=".ArrayTypeWine['id_typeWine'].">".ArrayTypeWine['typeWine']."</option>";
-                }?>
+                    foreach($ArrayTypeWines as $ArrayTypeWine) //Je lis dans le tableau cette fois-ci
+                    {
+                        echo "<option value=".$ArrayTypeWine['id_typeWine'].">".$ArrayTypeWine['typeWine']."</option>"; // echo "<option value=".ArrayTypeWine['id_typeWine'].">".ArrayTypeWine['typeWine']."</option>";
+                    }
+                ?>
                 
             </select>
         </div>
