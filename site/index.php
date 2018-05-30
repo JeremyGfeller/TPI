@@ -46,7 +46,7 @@ try
     }
     else
     {
-        require('view/frontend/home.php');
+        require('view/frontend/template.php');
     }
 }
 catch(Exception $e)

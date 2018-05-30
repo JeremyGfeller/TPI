@@ -7,35 +7,35 @@
         <button name='search'>Rechercher</button>
 </form>
 
-<table style='border: 1px solid black'>
+<table>
 
         <?php
                 foreach($ArrayWines as $ArrayWine)
                 {
                         echo"
                         <tr>
-                                <td style='border: 1px solid black'>
-                                        Nom du vin 
+                                <td style='border: 1px solid black; padding: 10px; padding-right: 10px;'>
+                                        <b>Nom du vin</b> 
                                 </td>
-                                <td style='border: 1px solid black'>
+                                <td style='border: 1px solid black; padding: 10px; padding-right: 10px; padding-left: 10px;'>
                                         ".$ArrayWine['name']."
                                 </td>
-                                <td style='border: 1px solid black'>
+                                <td style='border: 1px solid black; padding: 10px; padding-right: 10px;'>
                                         Type de vin 
                                 </td>
-                                <td style='border: 1px solid black'>
+                                <td style='border: 1px solid black; padding: 10px; padding-right: 10px; padding-left: 10px;'>
                                         ".$ArrayWine['typeWine']." 
                                 </td>
-                                <td style='border: 1px solid black'>
+                                <td style='border: 1px solid black; padding: 10px; padding-right: 10px;'>
                                         Année 
                                 </td>
-                                <td style='border: 1px solid black'>
+                                <td style='border: 1px solid black; padding: 10px; padding-right: 10px; padding-left: 10px;'>
                                         ".$ArrayWine['year']."
                                 </td>
-                                <td style='border: 1px solid black'>
+                                <td style='border: 1px solid black; padding: 10px; padding-right: 10px;'>
                                         Quantité 
                                 </td>
-                                <td style='border: 1px solid black'>";
+                                <td style='border: 1px solid black; padding: 10px; padding-right: 10px; padding-left: 10px;'>";
                                         if($ArrayWine['quantity'] > 1)
                                         {
                                                 echo "".$ArrayWine['quantity']." bouteilles";

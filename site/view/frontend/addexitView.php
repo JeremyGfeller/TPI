@@ -1,11 +1,18 @@
 <?php $title = 'Vue addexitView'; ?>
 
 <?php ob_start(); ?>
+    
+    <style>
+        .espacement
+        {
+            margin-bottom: 30px;
+        }
+    </style>
 
     <form method='post'>
-        <div>
+        <div class='col-lg-7 espacement'>
             <span style='border:1px solid black;padding: 5px;'>Nom du vin</span><br>
-            <SELECT name='id_wine' size='1' style='padding-right: 60px; margin: 10px;' onchange='yearWine(this.value)'>
+            <SELECT name='id_wine' size='1' style='padding-right: 60px; margin-top: 10px;' onchange='yearWine(this.value)'>
                 <option value='' selected>Selectionnez un vin</option>
                 <?php //Le tableau est déjà connu par le programe car tu l'as crée dans le controller. Comme tu appelle cette page, tu gardes toute les variables déjà connues
                     foreach($ArrayWines as $ArrayWine) //Je lis dans le tableau cette fois-ci
@@ -15,19 +22,19 @@
                 ?>
             </SELECT>
         </div>
-        <div>
+        <div class='col-lg-5 espacement'>
             <span style='border:1px solid black;padding: 5px;'>Année</span><br>
-            <div id='year' style='margin: 10px;'></div>
+            <div id='year' style='margin-top: 10px;'></div>
         </div>
-        <div>
+        <div class='col-lg-7 espacement'>
             <span style='border:1px solid black;padding: 5px;'>Nombre de bouteilles</span><br>
-            <input type='text' name='quantity' required style='margin: 10px;'/>
+            <input type='number' min='1' name='quantity' required style='margin-top: 10px;'/>
         </div>
-        <div>
+        <div class='col-lg-5 espacement'>
             <span style='border:1px solid black; padding: 5px;'>Date</span><br>
-            <div id='date' style='margin: 10px;'><?= date('d-m-Y'); ?></div>
+            <div id='date' style='margin-top: 10px;'><?= date('d-m-Y'); ?></div>
         </div>
-        <div>
+        <div class='col-lg-12'>
             <button name='in'>Entrée</button>
             <button name='out'>Sortie</button>
         </div>
