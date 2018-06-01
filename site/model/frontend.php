@@ -114,7 +114,7 @@ function wineOut($listYear, $quantity)
 function quantityNoDate()
 {
     $dbh = connectDB();
-    $req = $dbh->query("SELECT name, typeWine, year, quantity FROM wine INNER JOIN vintage on id_wine = fk_wine INNER JOIN typeWine on fk_typeWine = id_typeWine;");
+    $req = $dbh->query("SELECT name, typeWine, year, id_vintage FROM wine INNER JOIN vintage on id_wine = fk_wine INNER JOIN typeWine on fk_typeWine = id_typeWine;");
  
     return $req; 
 }
@@ -126,6 +126,23 @@ function quantityWithDate($date)
     INNER JOIN vintage on id_wine = fk_wine
     INNER JOIN typeWine on fk_typeWine = id_typeWine
     WHERE date LIKE '$date%';");
+ 
+    return $req; 
+}
+
+function lastInventory($id_vintage)
+{
+    $dbh = connectDB();
+    $req = $dbh->query("SELECT date, nb_bottles from movement where fk_vintage = $id_vintage and movement_type = 0 order by date DESC Limit 1;");
+    $reqArray = $req->fetch();
+ 
+    return $reqArray; 
+}
+
+function sumMovements($id_vintage, $date)
+{
+    $dbh = connectDB();
+    $req = $dbh->query("Select sum(nb_bottles * movement_type) from movement where fk_vintage = $id_vintage and date > '$date'");
  
     return $req; 
 }

@@ -53,7 +53,17 @@ function showStock()
     $ArrayWines = array();
     foreach($quantityNoDates as $quantityNoDate) //Je lis dans le resultat de la requête pour chaque entrée reçue
     {
-        array_push($ArrayWines, array('name' => $quantityNoDate['name'] , 'typeWine' => $quantityNoDate['typeWine'], 'year' => $quantityNoDate['year'], 'quantity' => $quantityNoDate['quantity']));
+        $res = array('name' => $quantityNoDate['name'] , 'typeWine' => $quantityNoDate['typeWine'], 'year' => $quantityNoDate['year']);
+        // calcule de la quantité
+        $lastInventory = lastInventory($quantityNoDate['id_vintage']);
+        extract($lastInventory); // $date, $nb_bottles
+
+        $sumMovements = sumMovements($quantityNoDate['id_vintage'], $date);
+
+        $nb_bottle = $sumMovements + $nb_bottles;
+
+        //$res['quantity'] = $nb_bottle;
+        array_push($ArrayWines, $res);
     }
 
     require('view/frontend/stockView.php');

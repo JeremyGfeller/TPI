@@ -15,16 +15,17 @@ try
         }
     }
     elseif(isset($stocks))
-    {
+    {        
+        error_log('tcho');
         showStock();
     }
     elseif(isset($search))
     {
+        error_log('ciao');
         showStockWithDate($date);
     }
     elseif(isset($in))
     {
-        error_log('tcho');
         in($listYear, $quantity);
     }
     elseif(isset($out))
