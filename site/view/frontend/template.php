@@ -162,14 +162,12 @@
 					<a class="navbar-brand" href="#">&nbsp;<!--Accueil--></a>
 				</div>
 				<div class="collapse navbar-collapse">
-                    <form method='post'>
-                        <ul class="nav navbar-nav">
-                            <li class="active"><button name='addwine'>Ajouter un vin</button></li>
-                            <li><button name='qr'>QR Code</button></li>
-                            <li><button name='addexit'>Entrée Sortie</button></li>
-                            <li><button name='stocks'>Stock</button></li>
-                        </ul>
-                    </form>
+                    <ul class="nav navbar-nav">
+                        <li><a href='?addwine'>Ajouter un vin</a></li>
+                        <li><a href='?addexit'>Entrée Sortie</a></li>
+                        <li><a href='?stocks'>Stock</a></li>
+                        <li><a href='?qr'>QR Code</a></li>
+                    </ul>
 				</div><!--/.nav-collapse -->
 			</div>
 				
@@ -189,7 +187,6 @@
 			</div>
 		
 		</footer><!-- /#footer -->
-        <a href='index.php'>index</a>
     </body>
 </html>
 

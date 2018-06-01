@@ -1,4 +1,5 @@
 <?php
+extract($_POST);
 function connectDB()
 {
     //Required datas for connect to a database
@@ -39,15 +40,15 @@ function selectVintage($wineName, $year)
 {
     $dbh = connectDB();
     $req = $dbh->query("SELECT id_vintage, (SELECT id_wine from wine WHERE name = '$wineName') as fk_wine, year, quantity, price from vintage WHERE year = '$year';");
-    $reqArray = $req->fetch();
- 
-    return $reqArray;
+     
+    return $req;
 }
 
 function insertVintage($wineName, $year, $price, $quantity)
 {
     $dbh = connectDB();
-    $dbh->query("INSERT INTO vintage (fk_wine, year, quantity, price) VALUES ((SELECT id_wine from wine WHERE name = '$wineName'), '$year', '$quantity', '$price');");
+    $dbh->query("INSERT INTO vintage (fk_wine, year, price) VALUES ((SELECT id_wine from wine WHERE name = '$wineName'), '$year', '$price');");
+    $dbh->query("INSERT INTO movement (fk_users, fk_vintage, nb_bottles, movement_type) VALUES ('1', (SELECT id_wine from wine WHERE name = '$wineName'), '$quantity', '0');");
     $dbh->query("UPDATE vintage SET qr_code = (SELECT id_vintage order by id_vintage DESC limit 1);");
 
     return;
@@ -97,8 +98,7 @@ function selectWine()
 function wineIn($listYear, $quantity)
 {
     $dbh = connectDB();
-    $dbh->query("INSERT INTO movement (fk_users, fk_vintage, movement_in) VALUES ('1', '$listYear', '$quantity');");
-    $dbh->query("UPDATE vintage SET quantity = quantity + $quantity, date = now() WHERE id_vintage = $listYear;");
+    $dbh->query("INSERT INTO movement (fk_users, fk_vintage, nb_bottles, movement_type) VALUES ('1', '$listYear', '$quantity', '1');");
 
     return;
 }
@@ -106,8 +106,7 @@ function wineIn($listYear, $quantity)
 function wineOut($listYear, $quantity)
 {
     $dbh = connectDB();
-    $dbh->query("INSERT INTO movement (fk_users, fk_vintage, movement_out) VALUES ('1', '$listYear', '$quantity');");
-    $dbh->query("UPDATE vintage SET quantity = quantity - $quantity, date = now() WHERE id_vintage = $listYear;");
+    $dbh->query("INSERT INTO movement (fk_users, fk_vintage, nb_bottles, movement_type) VALUES ('1', '$listYear', '$quantity', '-1');");
 
     return;
 }

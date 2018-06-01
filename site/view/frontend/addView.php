@@ -1,4 +1,4 @@
-<?php $title = 'Ajouter un nouveau vin'; ?>
+<?php $title = 'Nouvelle entrée en cave'; ?>
 
 <?php ob_start(); ?>
     
@@ -10,15 +10,15 @@
     </style>
 
     <form method='post'>
-        <div class='col-lg-7 espacement'>
+        <div class='col-lg-6 espacement text-center'>
             <span style='border:1px solid black;padding: 5px;'>Nom du vin</span><br>
             <input type='text' name='wineName' style='margin-top: 10px'/>
         </div>
-        <div class='col-lg-5 espacement'>
+        <div class='col-lg-6 espacement text-center'>
             <span style='border:1px solid black;padding: 5px;'>Année</span><br>
             <input type='number' min='1' name='year' style='margin-top: 10px'/>
         </div>
-        <div class='col-lg-7 espacement'>
+        <div class='col-lg-6 espacement text-center'>
             <span style='border:1px solid black;padding: 5px;'>Type de vin</span><br>
             <select name='typeWine' style='margin-top: 10px'>
                 
@@ -31,20 +31,20 @@
                 
             </select>
         </div>
-        <div class='col-lg-5 espacement'>
+        <div class='col-lg-6 espacement text-center'>
             <span style='border:1px solid black;padding: 5px;'>Nombre de bouteilles</span><br>
             <input type='number' min='1' name='quantity' style='margin-top: 10px;' required/>
         </div>
-        <div class='col-lg-7 espacement'>
+        <div class='col-lg-6 espacement text-center'>
             <span style='border:1px solid black;padding: 5px;'>Fournisseurs</span><br>
             <input type='text' name='provider' style='margin-top: 10px;' required/>
         </div>
-        <div class='col-lg-5 espacement'>
+        <div class='col-lg-6 espacement text-center'>
             <span style='border:1px solid black;padding: 5px;'>Prix</span><br>
             <input type='number' min='1' name='price' style='margin-top: 10px;' required/>
         </div>
-        <div class='col-lg-12' style='padding-left: 350px;'>
-            <button name='add'>Entrée</button>
+        <div class='col-lg-12 text-center'>
+            <button style='padding: 5px; padding-right: 30px; padding-left: 30px;' name='add'>Ajouter</button>
         </div>
     </form>
 

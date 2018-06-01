@@ -2,6 +2,8 @@
 require_once('controller/frontend.php');
 extract($_POST);
 extract($_GET);
+error_log(print_r($_POST, 1));
+error_log(print_r($_GET, 1));
 
 try
 {
@@ -20,17 +22,18 @@ try
     {
         showStockWithDate($date);
     }
-    elseif(isset($addexit))
-    {
-        showAddexit();
-    }
     elseif(isset($in))
     {
+        error_log('tcho');
         in($listYear, $quantity);
     }
     elseif(isset($out))
     {
         out($listYear, $quantity);
+    }
+    elseif(isset($addexit))
+    {
+        showAddexit();
     }
     elseif(isset($qr_code))
     {
@@ -46,7 +49,7 @@ try
     }
     else
     {
-        require('view/frontend/template.php');
+        require('view/frontend/addView.php');
     }
 }
 catch(Exception $e)

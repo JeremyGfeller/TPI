@@ -1,4 +1,4 @@
-<?php $title = 'Vue qr_codeView'; ?>
+<?php $title = 'QR Code'; ?>
 
 <?php ob_start(); ?>
 

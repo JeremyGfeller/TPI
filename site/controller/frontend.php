@@ -1,8 +1,9 @@
 <?php
 require('model/frontend.php');
 require('phpqrcode/qrlib.php');
+extract($_POST);
 
-echo "POST: "; print_r($_POST); echo "<br><br>";
+echo "POST :"; print_r($_POST); echo "<br>";
 
 function addWine($wineName, $year, $provider, $typeWine, $price, $quantity)
 {
