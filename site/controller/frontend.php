@@ -91,14 +91,6 @@ function showStockWithDate($dateNow)
         array_push($ArrayWines, $res);
     }
 
-    /*$quantityWithDates = quantityWithDate($date);
-     
-    $ArrayWines = array();
-    foreach($quantityWithDates as $quantityWithDate) //Je lis dans le resultat de la requête pour chaque entrée reçue
-    {
-        array_push($ArrayWines, array('name' => $quantityWithDate['name'] , 'typeWine' => $quantityWithDate['typeWine'], 'year' => $quantityWithDate['year'], 'date' => $quantityWithDate['date']));
-    }*/
-
     require('view/frontend/stockView.php');
 }
 
