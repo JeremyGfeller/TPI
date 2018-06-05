@@ -12,7 +12,7 @@
     <form method='post'>
         <div class='col-lg-7 espacement text-center'>
             <span style='border:1px solid black;padding: 5px;'>Nom du vin</span><br>
-            <SELECT name='id_wine' size='1' style='padding-right: 60px; margin-top: 10px;' onchange='yearWine(this.value)'>
+            <SELECT name='id_wine' size='1' style='padding-right: 60px; margin-top: 10px;' onchange='yearWine(this.value)' required>
                 <option value='' selected>Selectionnez un vin</option>
                 <?php //Le tableau est déjà connu par le programe car tu l'as crée dans le controller. Comme tu appelle cette page, tu gardes toute les variables déjà connues
                     foreach($ArrayWines as $ArrayWine) //Je lis dans le tableau cette fois-ci
