@@ -3,7 +3,7 @@
     {
         #tohide 
         {
-            display :  none;
+            display : none;
         }
         @page 
         {
@@ -24,10 +24,10 @@ foreach($ArrayPrintQRCodes as $ArrayPrintQRCode)
     echo "
     <table style='float: left; border: 1px solid black; margin: 10px;'>
         <tr>
-            <td>
+            <td align='center'>
                 <img src='qr_code/".$ArrayPrintQRCode['qr_code']."-".$ArrayPrintQRCode['name']."-".$ArrayPrintQRCode['year'].".png'>
                 <p>".$ArrayPrintQRCode['name']." de ".$ArrayPrintQRCode['year']."</p>
-                <a id='tohide' onclick='print()'><button>Imprimer</button></a>   
+                <a id='tohide' onclick='print()'><button>Imprimer</button></a>
             </td>
         </tr>
     </table>

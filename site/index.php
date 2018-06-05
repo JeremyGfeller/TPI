@@ -14,15 +14,13 @@ try
             addWine($wineName, $year, $provider, $typeWine, $price, $quantity);
         }
     }
-    elseif(isset($stocks))
-    {        
-        error_log('tcho');
-        showStock();
-    }
     elseif(isset($search))
     {
-        error_log('ciao');
         showStockWithDate($date);
+    }
+    elseif(isset($stocks))
+    {        
+        showStock();
     }
     elseif(isset($in))
     {
@@ -50,7 +48,7 @@ try
     }
     else
     {
-        require('view/frontend/addView.php');
+        require('view/frontend/template.php');
     }
 }
 catch(Exception $e)

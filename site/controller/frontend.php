@@ -3,8 +3,6 @@ require('model/frontend.php');
 require('phpqrcode/qrlib.php');
 extract($_POST);
 
-echo "POST :"; print_r($_POST); echo "<br>";
-
 function addWine($wineName, $year, $provider, $typeWine, $price, $quantity)
 {
     $selectWine = newWine($wineName);
@@ -71,15 +69,42 @@ function showStock()
     require('view/frontend/stockView.php');
 }
 
-function showStockWithDate($date)
+function showStockWithDate($dateNow)
 {
-    $quantityWithDates = quantityWithDate($date);
+
+    $quantityNoDates = quantityNoDate();
+     
+    $ArrayWines = array();
+    foreach($quantityNoDates as $quantityNoDate) //Je lis dans le resultat de la requête pour chaque entrée reçue
+    {
+        $res = array('name' => $quantityNoDate['name'] , 'typeWine' => $quantityNoDate['typeWine'], 'year' => $quantityNoDate['year']);
+        
+        // calcule de la quantité
+        $lastInventory = lastInventory($quantityNoDate['id_vintage']);
+        extract($lastInventory); // $date, $nb_bottles
+
+        //error_log(print_r($lastInventory, 1));
+
+        $sumMovements = sumMovements($quantityNoDate['id_vintage'], $dateNow);
+        extract($sumMovements); // $quantity
+
+        //error_log(print_r($sumMovements, 1));
+
+        $nb_bottle = $sumMovements['quantity'] + $lastInventory['nb_bottles'];
+
+        error_log(print_r($nb_bottle, 1));
+
+        $res['quantity'] = $nb_bottle;
+        array_push($ArrayWines, $res);
+    }
+
+    /*$quantityWithDates = quantityWithDate($date);
      
     $ArrayWines = array();
     foreach($quantityWithDates as $quantityWithDate) //Je lis dans le resultat de la requête pour chaque entrée reçue
     {
-        array_push($ArrayWines, array('name' => $quantityWithDate['name'] , 'typeWine' => $quantityWithDate['typeWine'], 'year' => $quantityWithDate['year'], 'quantity' => $quantityWithDate['quantity'], 'date' => $quantityWithDate['date']));
-    }
+        array_push($ArrayWines, array('name' => $quantityWithDate['name'] , 'typeWine' => $quantityWithDate['typeWine'], 'year' => $quantityWithDate['year'], 'date' => $quantityWithDate['date']));
+    }*/
 
     require('view/frontend/stockView.php');
 }

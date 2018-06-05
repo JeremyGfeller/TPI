@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8"/>
-        <title><?= $title ?></title>
+        <title><?= @$title ?></title>
 
         <link href="public/css/style.css" rel="stylesheet" />
         <meta charset="utf-8">

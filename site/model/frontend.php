@@ -6,7 +6,7 @@ function connectDB()
     $hostname = 'localhost';
     $dbname = 'caveWine';
     $username = 'root';
-    $password = '';
+    $password = 'root';
  
     // PDO = Persistant Data Object
     // Between "" = Connection String
@@ -48,7 +48,7 @@ function insertVintage($wineName, $year, $price, $quantity)
 {
     $dbh = connectDB();
     $dbh->query("INSERT INTO vintage (fk_wine, year, price) VALUES ((SELECT id_wine from wine WHERE name = '$wineName'), '$year', '$price');");
-    $dbh->query("INSERT INTO movement (fk_users, fk_vintage, nb_bottles, movement_type) VALUES ('1', (SELECT id_wine from wine WHERE name = '$wineName'), '$quantity', '0');");
+    $dbh->query("INSERT INTO movement (fk_users, fk_vintage, nb_bottles, movement_type) VALUES ('1', (SELECT id_vintage from vintage inner join wine on fk_wine = id_wine WHERE name = '$wineName'), '$quantity', '0');");
     $dbh->query("UPDATE vintage SET qr_code = (SELECT id_vintage order by id_vintage DESC limit 1);");
 
     return;
@@ -122,7 +122,7 @@ function quantityNoDate()
 function quantityWithDate($date)
 {
     $dbh = connectDB();
-    $req = $dbh->query("SELECT name, typeWine, year, quantity, date FROM wine
+    $req = $dbh->query("SELECT name, typeWine, year, date FROM wine
     INNER JOIN vintage on id_wine = fk_wine
     INNER JOIN typeWine on fk_typeWine = id_typeWine
     WHERE date LIKE '$date%';");
@@ -142,7 +142,7 @@ function lastInventory($id_vintage)
 function sumMovements($id_vintage, $date)
 {
     $dbh = connectDB();
-    $req = $dbh->query("Select sum(nb_bottles * movement_type) as quantity from movement where fk_vintage = $id_vintage and date > '$date'");
+    $req = $dbh->query("SELECT fk_vintage, sum(nb_bottles * movement_type) as quantity from movement where fk_vintage = $id_vintage and date > '$date'");
     $reqArray = $req->fetch();
  
     return $reqArray; 
