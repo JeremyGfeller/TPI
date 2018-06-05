@@ -147,3 +147,21 @@ function sumMovements($id_vintage, $date)
  
     return $reqArray; 
 }
+
+function lastInventoryWithDate($id_vintage, $date)
+{        
+    $dbh = connectDB();
+    $req = $dbh->query("SELECT date, fk_vintage, nb_bottles from movement where date <= '$date' and fk_vintage = $id_vintage order by date DESC Limit 1;");
+    $reqArray = $req->fetch();
+ 
+    return $reqArray; 
+}
+
+function sumMovementsWithDate($id_vintage, $date1, $date2)
+{
+    $dbh = connectDB();
+    $req = $dbh->query("SELECT fk_vintage, sum(nb_bottles * movement_type) as quantity from movement where fk_vintage = $id_vintage and date > '$date1' and date <= '$date2'");
+    $reqArray = $req->fetch();
+ 
+    return $reqArray; 
+}

@@ -71,7 +71,6 @@ function showStock()
 
 function showStockWithDate($dateNow)
 {
-
     $quantityNoDates = quantityNoDate();
      
     $ArrayWines = array();
@@ -80,19 +79,13 @@ function showStockWithDate($dateNow)
         $res = array('name' => $quantityNoDate['name'] , 'typeWine' => $quantityNoDate['typeWine'], 'year' => $quantityNoDate['year']);
         
         // calcule de la quantité
-        $lastInventory = lastInventory($quantityNoDate['id_vintage']);
-        extract($lastInventory); // $date, $nb_bottles
+        $lastInventoryWithDate = lastInventoryWithDate($quantityNoDate['id_vintage'], $dateNow);
+        extract($lastInventoryWithDate); // $date, $nb_bottles
 
-        //error_log(print_r($lastInventory, 1));
+        $sumMovementsWithDate = sumMovementsWithDate($quantityNoDate['id_vintage'], $date, $dateNow);
+        extract($sumMovementsWithDate); // $quantity
 
-        $sumMovements = sumMovements($quantityNoDate['id_vintage'], $dateNow);
-        extract($sumMovements); // $quantity
-
-        //error_log(print_r($sumMovements, 1));
-
-        $nb_bottle = $sumMovements['quantity'] + $lastInventory['nb_bottles'];
-
-        error_log(print_r($nb_bottle, 1));
+        $nb_bottle = $quantity + $nb_bottles;
 
         $res['quantity'] = $nb_bottle;
         array_push($ArrayWines, $res);
